@@ -1,0 +1,88 @@
+{% include 'master.html' %}
+{% block 'master' %}
+ <hr>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 30px">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">College Management</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#" style="width: 100px">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" style="width: 900px"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'teacher' %}" style="width: 100px">Teachers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'student' %}" tabindex="-1" style="width: 100px">Student</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}" tabindex="-1" style="width: 100px">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <hr>
+     <div class="row">
+        <div class="col"></div>
+        <div class="col"><br>
+            <table class="table" width="400">
+                <thead>
+                <tr>
+                    <th scope="col" colspan="2" style="text-align: center;font-size: 40px">Add New Teacher</th>
+                </tr>
+                </thead>
+                <form action="{% url 'addStd' %}" method="post">
+                    {% csrf_token %}
+                <tbody>
+                <tr>
+                    <td></td>
+                </tr>
+                {% if id %}
+                    <tr>
+                    <th scope="row">Id No</th>
+                    <td><input type="number" min="1" max="1000" name="t1" placeholder="Id No" value="{{ id }}" readonly></td>
+                </tr>
+                    {% else %}
+                <tr>
+                    <th scope="row">Id No</th>
+                    <td><input type="number" min="1" max="1000" name="t1" placeholder="Id No"></td>
+                </tr>
+                {% endif %}
+                <tr>
+                    <th scope="row">Name</th>
+                    <td><input type="text" name="t2" placeholder="Enter Teacher Name" maxlength="30"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Subject</th>
+                    <td>
+                        <select name="t3">
+                            <option>Mathematics</option>
+                            <option>Science</option>
+                            <option>English</option>
+                            <option>S.Science</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Password</th>
+                    <td><input type="password"  name="t5" "></td>
+                </tr>
+
+                <tr>
+                    <th scope="row" colspan="2" style="text-align: center"><button type="submit">Save</button> </th>
+                </tr>
+                </tbody>
+                    </form>
+            </table>
+        </div>
+        <div class="col"></div>
+    </div>
+{% endblock %}

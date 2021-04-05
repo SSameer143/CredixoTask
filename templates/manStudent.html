@@ -1,0 +1,68 @@
+{% load static %}
+{% include 'master.html' %}
+{% block 'master' %}
+    <hr>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 30px">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">College Management</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#" style="width: 100px">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" style="width: 900px"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'teacher' %}" style="width: 100px">Teachers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'student' %}" tabindex="-1" style="width: 100px">Student</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}" tabindex="-1" style="width: 100px">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <hr>
+{% if data %}
+    <br><br>
+        <table class="table" align="center" style="width: 1200px">
+            <thead style="width: 400px">
+            <tr>
+                <th scope="col" colspan="4" style="text-align: center;font-size: 30px" width="400">All Teacher
+                    Details
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th>Id No</th>
+                <th>Name</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+            {% for x in data %}
+                <tr>
+                    <td>{{ x.idno }}</td>
+                    <td>{{ x.name }}</td>
+                    <td><a href="{% url 'update' %}?idno={{ x.idno }}"><img src="{% static 'images/update.png' %}"
+                                                                            width="20" height="20"> </a></td>
+                    <td><a href="{% url 'delete' %}?idno={{ x.idno }}"><img src="{% static 'images/delete.png' %}"
+                                                                            width="20" height="20"></a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+    <br>
+    <u><h1 style="font-family: 'Times New Roman';text-align: center">No Details Available</h1></u>
+    {% endif %}
+
+{% endblock %}
